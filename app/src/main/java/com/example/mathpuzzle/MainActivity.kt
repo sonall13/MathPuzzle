@@ -27,7 +27,6 @@ import android.widget.Button
         puzzle.setOnClickListener {
             var conintent=Intent(this,Puzzles_page::class.java)
             startActivity(conintent)
-
         }
     }
 }

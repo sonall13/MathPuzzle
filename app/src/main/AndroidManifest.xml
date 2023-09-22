@@ -13,6 +13,9 @@
         android:theme="@style/Theme.MathPuzzle"
         tools:targetApi="31">
         <activity
+            android:name=".Wining_page"
+            android:exported="false" />
+        <activity
             android:name=".next_lockpage"
             android:exported="false" />
         <activity
