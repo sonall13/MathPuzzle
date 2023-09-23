@@ -1,11 +1,14 @@
 package com.example.mathpuzzle
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 
 class Level1 : AppCompatActivity() {
 
+    lateinit var textview:TextView
     lateinit var one:Button
     lateinit var two:Button
     lateinit var three:Button
@@ -38,19 +41,33 @@ class Level1 : AppCompatActivity() {
         zero=findViewById(R.id.zero)
         submit=findViewById(R.id.submit)
         delete=findViewById(R.id.delete)
+        textview=findViewById(R.id.textview)
 
 
         one.setOnClickListener {
-
-
+            click("1")
         }
 
+
+        two.setOnClickListener {
+            click("2")
+        }
+
+        three.setOnClickListener {
+            click("3")
+        }
+
+        four.setOnClickListener {
+            click("")
+        }
+        submit.setOnClickListener {
+
+            var sub_intent=Intent(this,Wining_page::class.java)
+            startActivity(sub_intent)
+        }
     }
 
     fun click(s:String){
-
-
-
-
+        textview.text= s
     }
 }
