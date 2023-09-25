@@ -22,8 +22,6 @@ import android.widget.Button
             var conintent=Intent(this,Continue_page::class.java)
             startActivity(conintent)
         }
-
-
         puzzle.setOnClickListener {
             var puzzleintent=Intent(this,Puzzles_page::class.java)
             startActivity(puzzleintent)

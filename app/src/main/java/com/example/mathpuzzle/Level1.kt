@@ -52,13 +52,34 @@ class Level1 : AppCompatActivity() {
         two.setOnClickListener {
             click("2")
         }
-
         three.setOnClickListener {
             click("3")
         }
 
         four.setOnClickListener {
-            click("")
+            click("4")
+        }
+        five.setOnClickListener {
+            click("5")
+        }
+        six.setOnClickListener {
+            click("6")
+        }
+        seven.setOnClickListener {
+            click("7")
+        }
+        eight.setOnClickListener {
+            click("8")
+        }
+        nine.setOnClickListener {
+            click("9")
+        }
+        zero.setOnClickListener {
+            click("0")
+        }
+        delete.setOnClickListener {
+
+                textview.text=" "
         }
         submit.setOnClickListener {
 
@@ -68,6 +89,8 @@ class Level1 : AppCompatActivity() {
     }
 
     fun click(s:String){
-        textview.text= s
+
+        textview.text=textview.text.toString()+s
+
     }
 }
