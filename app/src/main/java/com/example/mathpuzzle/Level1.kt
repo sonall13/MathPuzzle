@@ -43,12 +43,9 @@ class Level1 : AppCompatActivity() {
         delete=findViewById(R.id.delete)
         textview=findViewById(R.id.textview)
 
-
         one.setOnClickListener {
             click("1")
         }
-
-
         two.setOnClickListener {
             click("2")
         }
@@ -78,19 +75,16 @@ class Level1 : AppCompatActivity() {
             click("0")
         }
         delete.setOnClickListener {
-
                 textview.text=" "
         }
         submit.setOnClickListener {
-
-            var sub_intent=Intent(this,Wining_page::class.java)
-            startActivity(sub_intent)
+                if(textview.text != " ") {
+                    var sub_intent = Intent(this, Wining_page::class.java)
+                    startActivity(sub_intent)
+                }
         }
     }
-
     fun click(s:String){
-
         textview.text=textview.text.toString()+s
-
     }
 }
