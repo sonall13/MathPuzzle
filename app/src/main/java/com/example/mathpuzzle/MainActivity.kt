@@ -5,7 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
- class MainActivity : AppCompatActivity() {
+ class
+ MainActivity : AppCompatActivity() {
 
     lateinit var con:Button
     lateinit var puzzle:Button

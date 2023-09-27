@@ -18,6 +18,7 @@ class Wining_page : AppCompatActivity() {
         con_win=findViewById(R.id.con_win)
         menu=findViewById(R.id.menu)
 
+        var pos=intent.getIntExtra("position",0)
 
         menu.setOnClickListener {
 
