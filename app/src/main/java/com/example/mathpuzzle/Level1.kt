@@ -2,7 +2,9 @@ package com.example.mathpuzzle
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -24,6 +26,8 @@ class Level1 : AppCompatActivity() {
     lateinit var delete: Button
     lateinit var levelimage: LinearLayout
     lateinit var levelboard: TextView
+    lateinit var skip: ImageView
+
 
     var arrayoflevel = arrayListOf<Int>(
         R.drawable.p1,
@@ -132,6 +136,7 @@ class Level1 : AppCompatActivity() {
 
 
         one = findViewById(R.id.one)
+        skip = findViewById(R.id.skip)
         levelboard = findViewById(R.id.levelboard)
         two = findViewById(R.id.two)
         three = findViewById(R.id.three)
@@ -147,12 +152,31 @@ class Level1 : AppCompatActivity() {
         textview = findViewById(R.id.textview)
         levelimage = findViewById(R.id.levelimage)
 
+
         var level = intent.getIntExtra("cnt", 0)
         levelboard.setText("Puzzle ${level + 1}")
 
         levelimage.setBackgroundResource(arrayoflevel[level])
+        skip.setOnClickListener {
+
+// List    = 0
+// prefrnce  = status0
 
 
+            MainActivity.statuslist[level] = MainActivity.Isskip
+            MainActivity.editior.putString("status$level", MainActivity.Isskip)
+
+            level++
+
+            MainActivity.editior.putInt("level", level)
+
+            MainActivity.editior.apply()
+
+            Log.e("=Level", "onCreate: ${MainActivity.statuslist.toList()}")
+
+            startActivity(Intent(this@Level1, Level1::class.java).putExtra("cnt", level))
+
+        }
 
         one.setOnClickListener {
             click("1")
@@ -195,18 +219,16 @@ class Level1 : AppCompatActivity() {
 
                 level++;
 
-                MainActivity.editior.putInt("level",level)
+                MainActivity.editior.putInt("level", level)
                 MainActivity.editior.apply()
 
                 var sub_intent = Intent(this, Wining_page::class.java)
                 startActivity(sub_intent.putExtra("position", level))
-//                    levelimage = arrayoflevel[s] as LinearLayout
             } else {
                 Toast.makeText(this, "WRONG!", Toast.LENGTH_SHORT).show()
             }
         }
     }
-
     fun click(s: String) {
         textview.text = textview.text.toString() + s
     }
