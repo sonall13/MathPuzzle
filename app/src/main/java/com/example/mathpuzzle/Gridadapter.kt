@@ -9,11 +9,9 @@ class Gridadapter(var puzzlesPage: Puzzles_page, var arrayofalevel: Array<String
     override fun getCount(): Int {
         return arrayofalevel.size
     }
-
     override fun getItem(p0: Int): Any {
      return p0
     }
-
     override fun getItemId(p0: Int): Long {
         return p0.toLong()
     }

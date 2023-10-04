@@ -19,11 +19,10 @@ class Wining_page : AppCompatActivity() {
 
         con_win = findViewById(R.id.con_win)
         menu = findViewById(R.id.menu)
-
         puzzlecoard = findViewById(R.id.puzzlecoard)
-        var pos = intent.getIntExtra("position", 0)
-        puzzlecoard.setText("Puzzle $pos Completed ")
 
+        var pos = intent.getIntExtra("position", 0)
+        puzzlecoard.text = "Puzzle $pos Completed "
 
 
         menu.setOnClickListener {
@@ -33,7 +32,7 @@ class Wining_page : AppCompatActivity() {
 
         }
         con_win.setOnClickListener {
-            var intent = Intent(this, Level1::class.java).putExtra("cnt", pos)
+            var intent = Intent(this,Level1::class.java).putExtra("cnt", pos)
             startActivity(intent)
         }
 

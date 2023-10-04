@@ -31,10 +31,9 @@ MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         sp = getSharedPreferences("mm", 0)
-        editior = sp.edit();
+        editior = sp.edit()
 
         var level = sp.getInt("level", 0)
-
 
         //5
         // status0 = lock
@@ -45,16 +44,13 @@ MainActivity : AppCompatActivity() {
 
         for (index in 0..5) {
             var levelstatus = sp.getString("status$index", Islock)
-            Log.e("=====", "onCreate: $levelstatus")
+//            Log.e("=====", "onCreate: $levelstatus")
             statuslist.add(levelstatus!!)
-            Log.e("=====", "onCreate: $statuslist")
-            println("===== onCreate: $statuslist")
+//            Log.e("=====", "onCreate: $statuslist")
+//            println("===== onCreate: $statuslist")
 
-            Toast.makeText(this@MainActivity, "$statuslist", Toast.LENGTH_LONG).show()
+//            Toast.makeText(this@MainActivity, "$statuslist", Toast.LENGTH_LONG).show()
         }
-
-
-
 
         con = findViewById(R.id.con)
         puzzle = findViewById(R.id.puzzle)
@@ -63,10 +59,12 @@ MainActivity : AppCompatActivity() {
         con.setOnClickListener {
             var conintent = Intent(this, Level1::class.java).putExtra("cnt", level)
             startActivity(conintent)
+            finish()
         }
         puzzle.setOnClickListener {
             var puzzleintent = Intent(this, Puzzles_page::class.java)
             startActivity(puzzleintent)
+            finish()
         }
     }
 }

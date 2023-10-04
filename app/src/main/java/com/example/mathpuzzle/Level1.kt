@@ -9,8 +9,11 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import java.lang.Exception
+import java.lang.NullPointerException
 
 class Level1 : AppCompatActivity() {
+
     lateinit var textview: TextView
     lateinit var one: Button
     lateinit var two: Button
@@ -114,8 +117,7 @@ class Level1 : AppCompatActivity() {
         R.drawable.p75
     )
 
-
-    var arrayofanswer = arrayOf(
+    var arrayofanswer = arrayOf<String>(
         "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
         "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
         "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
@@ -125,15 +127,11 @@ class Level1 : AppCompatActivity() {
         "61", "62", "63", "64", "65", "66", "67", "68", "69", "70",
         "71", "72", "73", "74", "75"
     )
-
+    var mybutton = ArrayList<Button>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_level1)
-
-
-
-
 
         one = findViewById(R.id.one)
         skip = findViewById(R.id.skip)
@@ -153,81 +151,71 @@ class Level1 : AppCompatActivity() {
         levelimage = findViewById(R.id.levelimage)
 
 
+        myclicjk(0,one)
+        myclicjk(1,two)
+        myclicjk(2,three)
+        myclicjk(3,four)
+        myclicjk(4,five)
+        myclicjk(5,six)
+        myclicjk(6,seven)
+        myclicjk(7,eight)
+        myclicjk(8,nine)
+        myclicjk(9,zero)
+
+
+
         var level = intent.getIntExtra("cnt", 0)
         levelboard.setText("Puzzle ${level + 1}")
 
         levelimage.setBackgroundResource(arrayoflevel[level])
+
         skip.setOnClickListener {
-
-// List    = 0
-// prefrnce  = status0
-
-
+            // List    = 0
+            // prefrnce  = status0
             MainActivity.statuslist[level] = MainActivity.Isskip
             MainActivity.editior.putString("status$level", MainActivity.Isskip)
-
             level++
-
             MainActivity.editior.putInt("level", level)
-
             MainActivity.editior.apply()
-
-            Log.e("=Level", "onCreate: ${MainActivity.statuslist.toList()}")
-
+//            Log.e("=Level", "onCreate: ${MainActivity.statuslist.toList()}")
             startActivity(Intent(this@Level1, Level1::class.java).putExtra("cnt", level))
-
+            finish()
         }
 
-        one.setOnClickListener {
             click("1")
-        }
-        two.setOnClickListener {
-            click("2")
-        }
-        three.setOnClickListener {
-            click("3")
-        }
 
-        four.setOnClickListener {
-            click("4")
-        }
-        five.setOnClickListener {
-            click("5")
-        }
-        six.setOnClickListener {
-            click("6")
-        }
-        seven.setOnClickListener {
-            click("7")
-        }
-        eight.setOnClickListener {
-            click("8")
-        }
-        nine.setOnClickListener {
-            click("9")
-        }
-        zero.setOnClickListener {
-            click("0")
-        }
         delete.setOnClickListener {
-            textview.text = ""
+            try {
+            textview.text = textview.text.toString().substring(0,textview.text.toString().length-1)
+            }
+            catch ( i : Exception)
+            {
+
+            }
         }
         submit.setOnClickListener {
-            if (textview.text == arrayofanswer[level
-                ]
-            ) {
+            if (textview.text == arrayofanswer[level]) {
 
-                level++;
-
+                level++
                 MainActivity.editior.putInt("level", level)
                 MainActivity.editior.apply()
 
                 var sub_intent = Intent(this, Wining_page::class.java)
                 startActivity(sub_intent.putExtra("position", level))
+
             } else {
                 Toast.makeText(this, "WRONG!", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+    fun myclicjk(position: Int, button: Button)
+    {
+        mybutton.add(button)
+        mybutton[position].setOnClickListener {
+
+            textview.text = textview.text.toString()+mybutton[position].text.toString()
+        }
+
     }
     fun click(s: String) {
         textview.text = textview.text.toString() + s

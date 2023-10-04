@@ -16,7 +16,6 @@
             android:id="@+id/puzzlecoard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:textSize="30dp"
             android:layout_marginTop="30dp"
             android:textColor="#303F9F"
@@ -29,10 +28,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/trophy"
-            android:gravity="center"
-            android:layout_marginLeft="80dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginRight="80dp"/>
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="200dp"
@@ -46,7 +43,6 @@
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:text="CONTINUE"
-                    android:gravity="center"
                     android:textSize="30dp"
                     android:textStyle="italic"
                     android:background="@drawable/stroke"

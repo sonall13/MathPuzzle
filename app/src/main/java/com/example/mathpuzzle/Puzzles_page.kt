@@ -7,9 +7,9 @@ import android.widget.GridView
 
 class Puzzles_page : AppCompatActivity() {
 
-    lateinit var puzzle1:Button
     lateinit var next:Button
     lateinit var gridView: GridView
+
     var arrayofalevel = arrayOf<String>(
         "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
         "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
@@ -29,22 +29,6 @@ class Puzzles_page : AppCompatActivity() {
         var gridadapter = Gridadapter(this,arrayofalevel)
         gridView.adapter = gridadapter
 
-
-////        puzzle1=findViewById(R.id.puzzle1)
-//        next=findViewById(R.id.next)
-//
-//
-//        puzzle1.setOnClickListener {
-//
-//            var l1_intent=Intent(this,Level1::class.java)
-//            startActivity(l1_intent)
-//        }
-//        next.setOnClickListener {
-//
-//            var l1_intent=Intent(this,next_lockpage::class.java)
-//            startActivity(l1_intent)
-//
-//        }
 
     }
 }
