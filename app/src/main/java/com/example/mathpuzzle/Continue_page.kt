@@ -8,7 +8,5 @@ class Continue_page : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_continue_page)
 
-
-
     }
 }

@@ -27,6 +27,7 @@ class Puzzles_page : AppCompatActivity() {
         gridView=findViewById(R.id.gridviwe)
 
         var gridadapter = Gridadapter(this,arrayofalevel)
+        gridView.adapter = gridadapter
 
 
 ////        puzzle1=findViewById(R.id.puzzle1)

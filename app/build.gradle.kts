@@ -7,6 +7,10 @@ android {
     namespace = "com.example.mathpuzzle"
     compileSdk = 33
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.example.mathpuzzle"
         minSdk = 17
