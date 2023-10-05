@@ -1,9 +1,12 @@
 package com.example.mathpuzzle
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.Button
+import kotlinx.coroutines.Dispatchers
 
 class Gridadapter(var puzzlesPage: Puzzles_page, var arrayofalevel: Array<String>) : BaseAdapter() {
     override fun getCount(): Int {
@@ -18,7 +21,24 @@ class Gridadapter(var puzzlesPage: Puzzles_page, var arrayofalevel: Array<String
 
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
 
+        var btn : Button
         var forlevel = LayoutInflater.from(puzzlesPage).inflate(R.layout.forlevel,p2,false)
+
+        btn = forlevel.findViewById(R.id.btn)
+        if(MainActivity.statuslist[p0] == MainActivity.Islock)
+        {
+            btn.setBackgroundResource(R.drawable.lock)
+        }
+        else if(MainActivity.statuslist[p0] == MainActivity.Isskip)
+        {
+            btn.setText("${p0+1}")
+        }
+        else if(MainActivity.statuslist[p0] == MainActivity.Isclear)
+        {
+            btn.setText("${p0+1}")
+            btn.setBackgroundResource(R.drawable.tick)
+            Log.e("+++", "getView: abc..", )
+        }
         return forlevel
     }
 

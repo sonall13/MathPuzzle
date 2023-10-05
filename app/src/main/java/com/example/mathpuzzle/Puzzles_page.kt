@@ -7,7 +7,7 @@ import android.widget.GridView
 
 class Puzzles_page : AppCompatActivity() {
 
-    lateinit var next:Button
+
     lateinit var gridView: GridView
 
     var arrayofalevel = arrayOf<String>(

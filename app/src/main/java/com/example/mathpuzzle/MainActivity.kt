@@ -42,7 +42,7 @@ MainActivity : AppCompatActivity() {
         // status3 = lock
         // status4 = lock
 
-        for (index in 0..5) {
+        for (index in 0..74) {
             var levelstatus = sp.getString("status$index", Islock)
 //            Log.e("=====", "onCreate: $levelstatus")
             statuslist.add(levelstatus!!)

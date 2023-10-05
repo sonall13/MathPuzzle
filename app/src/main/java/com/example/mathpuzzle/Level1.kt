@@ -174,6 +174,8 @@ class Level1 : AppCompatActivity() {
             // prefrnce  = status0
             MainActivity.statuslist[level] = MainActivity.Isskip
             MainActivity.editior.putString("status$level", MainActivity.Isskip)
+
+
             level++
             MainActivity.editior.putInt("level", level)
             MainActivity.editior.apply()
@@ -182,7 +184,7 @@ class Level1 : AppCompatActivity() {
             finish()
         }
 
-            click("1")
+
 
         delete.setOnClickListener {
             try {
@@ -195,6 +197,10 @@ class Level1 : AppCompatActivity() {
         }
         submit.setOnClickListener {
             if (textview.text == arrayofanswer[level]) {
+                MainActivity.editior.putString("status$level",MainActivity.Isclear)
+                MainActivity.editior.apply()
+                MainActivity.statuslist[level] = MainActivity.Isclear
+
 
                 level++
                 MainActivity.editior.putInt("level", level)
@@ -216,9 +222,6 @@ class Level1 : AppCompatActivity() {
             textview.text = textview.text.toString()+mybutton[position].text.toString()
         }
 
-    }
-    fun click(s: String) {
-        textview.text = textview.text.toString() + s
     }
 }
 

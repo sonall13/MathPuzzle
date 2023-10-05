@@ -16,9 +16,6 @@
             android:name=".Wining_page"
             android:exported="false" />
         <activity
-            android:name=".next_lockpage"
-            android:exported="false" />
-        <activity
             android:name=".Level1"
             android:exported="false" />
         <activity
