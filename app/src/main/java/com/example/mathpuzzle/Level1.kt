@@ -127,6 +127,7 @@ class Level1 : AppCompatActivity() {
         "61", "62", "63", "64", "65", "66", "67", "68", "69", "70",
         "71", "72", "73", "74", "75"
     )
+
     var mybutton = ArrayList<Button>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -150,7 +151,6 @@ class Level1 : AppCompatActivity() {
         textview = findViewById(R.id.textview)
         levelimage = findViewById(R.id.levelimage)
 
-
         myclicjk(0,one)
         myclicjk(1,two)
         myclicjk(2,three)
@@ -162,19 +162,15 @@ class Level1 : AppCompatActivity() {
         myclicjk(8,nine)
         myclicjk(9,zero)
 
-
-
+//        var numget=intent.getIntExtra("l_number",0)
         var level = intent.getIntExtra("cnt", 0)
         levelboard.setText("Puzzle ${level + 1}")
-
         levelimage.setBackgroundResource(arrayoflevel[level])
-
         skip.setOnClickListener {
             // List    = 0
             // prefrnce  = status0
             MainActivity.statuslist[level] = MainActivity.Isskip
             MainActivity.editior.putString("status$level", MainActivity.Isskip)
-
 
             level++
             MainActivity.editior.putInt("level", level)
@@ -183,16 +179,12 @@ class Level1 : AppCompatActivity() {
             startActivity(Intent(this@Level1, Level1::class.java).putExtra("cnt", level))
             finish()
         }
-
-
-
-        delete.setOnClickListener {
+        delete.setOnClickListener{
             try {
-            textview.text = textview.text.toString().substring(0,textview.text.toString().length-1)
+                textview.text = textview.text.toString().substring(0,textview.text.toString().length-1)
             }
             catch ( i : Exception)
             {
-
             }
         }
         submit.setOnClickListener {
@@ -200,7 +192,6 @@ class Level1 : AppCompatActivity() {
                 MainActivity.editior.putString("status$level",MainActivity.Isclear)
                 MainActivity.editior.apply()
                 MainActivity.statuslist[level] = MainActivity.Isclear
-
 
                 level++
                 MainActivity.editior.putInt("level", level)
@@ -218,11 +209,8 @@ class Level1 : AppCompatActivity() {
     {
         mybutton.add(button)
         mybutton[position].setOnClickListener {
-
             textview.text = textview.text.toString()+mybutton[position].text.toString()
         }
 
     }
 }
-
-

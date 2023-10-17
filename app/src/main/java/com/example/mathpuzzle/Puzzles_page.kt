@@ -1,8 +1,8 @@
 package com.example.mathpuzzle
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.GridView
 
 class Puzzles_page : AppCompatActivity() {
@@ -26,9 +26,17 @@ class Puzzles_page : AppCompatActivity() {
 
         gridView=findViewById(R.id.gridviwe)
 
-        var gridadapter = Gridadapter(this,arrayofalevel)
+        var mylevel=intent.getIntExtra("mylevel",0)
+
+        var gridadapter = Gridadapter(this,arrayofalevel,mylevel)
         gridView.adapter = gridadapter
 
+
+        gridView.setOnItemClickListener { adapterView, view, i, l ->
+
+            var  intentlevel=Intent(this,Level1::class.java).putExtra("l_number" ,i)
+            startActivity(intentlevel)
+        }
 
     }
 }

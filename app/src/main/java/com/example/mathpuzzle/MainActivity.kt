@@ -62,7 +62,7 @@ MainActivity : AppCompatActivity() {
             finish()
         }
         puzzle.setOnClickListener {
-            var puzzleintent = Intent(this, Puzzles_page::class.java)
+            var puzzleintent = Intent(this, Puzzles_page::class.java).putExtra("mylevel",level)
             startActivity(puzzleintent)
             finish()
         }
