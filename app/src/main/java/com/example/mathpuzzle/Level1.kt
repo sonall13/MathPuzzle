@@ -30,6 +30,7 @@ class Level1 : AppCompatActivity() {
     lateinit var levelimage: LinearLayout
     lateinit var levelboard: TextView
     lateinit var skip: ImageView
+    lateinit var hint: ImageView
 
 
     var arrayoflevel = arrayListOf<Int>(
@@ -128,6 +129,7 @@ class Level1 : AppCompatActivity() {
         "71", "72", "73", "74", "75"
     )
 
+
     var mybutton = ArrayList<Button>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -150,6 +152,7 @@ class Level1 : AppCompatActivity() {
         delete = findViewById(R.id.delete)
         textview = findViewById(R.id.textview)
         levelimage = findViewById(R.id.levelimage)
+        hint = findViewById(R.id.hint)
 
         myclicjk(0,one)
         myclicjk(1,two)
@@ -162,22 +165,36 @@ class Level1 : AppCompatActivity() {
         myclicjk(8,nine)
         myclicjk(9,zero)
 
-//        var numget=intent.getIntExtra("l_number",0)
         var level = intent.getIntExtra("cnt", 0)
         levelboard.setText("Puzzle ${level + 1}")
         levelimage.setBackgroundResource(arrayoflevel[level])
+
+        hint.setOnClickListener {
+            Toast.makeText(this, "${arrayofanswer[level]}", Toast.LENGTH_LONG).show()
+        }
+
         skip.setOnClickListener {
             // List    = 0
             // prefrnce  = status0
-            MainActivity.statuslist[level] = MainActivity.Isskip
-            MainActivity.editior.putString("status$level", MainActivity.Isskip)
+            if (MainActivity.statuslist[level] == MainActivity.Isclear) {
+                level++
+                MainActivity.editior.apply()
+//              Log.e("=Level", "onCreate: ${MainActivity.statuslist.toList()}")
+                startActivity(Intent(this@Level1, Level1::class.java).putExtra("cnt", level))
+                finish()
+            }
+            else
+            {
+                MainActivity.statuslist[level] = MainActivity.Isskip
+                MainActivity.editior.putString("status$level", MainActivity.Isskip)
 
-            level++
-            MainActivity.editior.putInt("level", level)
-            MainActivity.editior.apply()
-//            Log.e("=Level", "onCreate: ${MainActivity.statuslist.toList()}")
-            startActivity(Intent(this@Level1, Level1::class.java).putExtra("cnt", level))
-            finish()
+                level++
+                MainActivity.editior.putInt("level", level)
+                MainActivity.editior.apply()
+//              Log.e("=Level", "onCreate: ${MainActivity.statuslist.toList()}")
+                startActivity(Intent(this@Level1, Level1::class.java).putExtra("cnt", level))
+                finish()
+            }
         }
         delete.setOnClickListener{
             try {
@@ -188,6 +205,13 @@ class Level1 : AppCompatActivity() {
             }
         }
         submit.setOnClickListener {
+
+            if (MainActivity.statuslist[level] == MainActivity.Isclear){
+
+                var sub_intent = Intent(this, Wining_page::class.java)
+                startActivity(sub_intent.putExtra("position", level+1))
+            }
+
             if (textview.text == arrayofanswer[level]) {
                 MainActivity.editior.putString("status$level",MainActivity.Isclear)
                 MainActivity.editior.apply()
@@ -199,8 +223,10 @@ class Level1 : AppCompatActivity() {
 
                 var sub_intent = Intent(this, Wining_page::class.java)
                 startActivity(sub_intent.putExtra("position", level))
-
-            } else {
+                finish()
+            }
+            else
+            {
                 Toast.makeText(this, "WRONG!", Toast.LENGTH_SHORT).show()
             }
         }

@@ -34,8 +34,9 @@ class Puzzles_page : AppCompatActivity() {
 
         gridView.setOnItemClickListener { adapterView, view, i, l ->
 
-            var  intentlevel=Intent(this,Level1::class.java).putExtra("l_number" ,i)
+            var  intentlevel=Intent(this,Level1::class.java).putExtra("cnt" ,i)
             startActivity(intentlevel)
+            finish()
         }
 
     }

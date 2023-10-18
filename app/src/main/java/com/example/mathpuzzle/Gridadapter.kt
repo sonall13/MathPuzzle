@@ -1,12 +1,10 @@
 package com.example.mathpuzzle
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.Button
-
+import android.widget.TextView
 class Gridadapter(var puzzlesPage: Puzzles_page, var arrayofalevel: Array<String>,var mylevel: Int) : BaseAdapter() {
     override fun getCount(): Int {
         return arrayofalevel.size
@@ -17,10 +15,9 @@ class Gridadapter(var puzzlesPage: Puzzles_page, var arrayofalevel: Array<String
     override fun getItemId(p0: Int): Long {
         return p0.toLong()
     }
-
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
 
-        var btn : Button
+        var btn : TextView
         var forlevel = LayoutInflater.from(puzzlesPage).inflate(R.layout.forlevel,p2,false)
 
         btn = forlevel.findViewById(R.id.btn)
@@ -36,14 +33,13 @@ class Gridadapter(var puzzlesPage: Puzzles_page, var arrayofalevel: Array<String
         {
             btn.setText("${p0+1}")
             btn.setBackgroundResource(R.drawable.tick)
-//            Log.e("+++", "getView: abc..", )
+//            Log.e("+++", "getView: abc..",)
         }
         if(p0==mylevel)
         {
-            btn.setText("${p0+1}")
             btn.setBackgroundResource(R.drawable.background)
+            btn.setText("${p0+1}")
         }
-
         return forlevel
     }
 
